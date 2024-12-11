@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polling Kategori</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      background-color: #6c63ff;
+      color: #fff;
+      padding: 1rem;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .category {
+      margin-bottom: 1.5rem;
+    }
+
+    .category label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .category select {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .category select:focus {
+      outline: none;
+      border-color: #6c63ff;
+      box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const categories = document.querySelectorAll('.category');
+      const usedAnswers = new Set();
+
+      categories.forEach(category => {
+        const select = category.querySelector('select');
+        select.addEventListener('change', (e) => {
+          const selected = e.target.value;
+
+          // Remove previous selection from usedAnswers
+          if (e.target.dataset.previous) {
+            usedAnswers.delete(e.target.dataset.previous);
+          }
+
+          // Prevent duplicate selections
+          if (usedAnswers.has(selected)) {
+            alert('Jawaban ini sudah dipilih di kategori lain!');
+            e.target.value = '';
+          } else {
+            usedAnswers.add(selected);
+            e.target.dataset.previous = selected;
+          }
+
+          updateOptions();
+        });
+      });
+
+      function updateOptions() {
+        const allOptions = [...document.querySelectorAll('select option')];
+        allOptions.forEach(option => {
+          const value = option.value;
+          option.disabled = value && usedAnswers.has(value);
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>Polling Pangandaran</h1>
+  <div class="container">
+    <form id="pollingForm">
+      <!-- Isi polling tetap -->
+      <div class="category">
+        <label>PALING DRAMA QUEEN / KING:</label>
+        <select name="drama_queen">
+          <option value="">Pilih Jawaban</option>
+          <option value="A">NAMI</option>
+          <option value="B">RITA</option>
+          <option value="C">PRI</option>
+          <option value="D">NANAT</option>
+          <option value="E">LULU</option>
+          <option value="F">UYUY</option>
+          <option value="G">NUR</option>
+          <option value="H">ARDEN</option>
+          <option value="I">FACHRIL</option>
+        </select>
+      </div>
+      <div class="category">
+        <label>PELAWAK TERSELUBUNG:</label>
+        <select name="pelawak">
+          <option value="">Pilih Jawaban</option>
+          <option value="A">NAMI</option>
+          <option value="B">RITA</option>
+          <option value="C">PRI</option>
+          <option value="D">NANAT</option>
+          <option value="E">LULU</option>
+          <option value="F">UYUY</option>
+          <option value="G">NUR</option>
+          <option value="H">ARDEN</option>
+          <option value="I">FACHRIL</option>
+        </select>
+      </div>
+      <div class="category">
+        <label>MASTERCHEF MENDADAK:</label>
+        <select name="masterchef">
+          <option value="">Pilih Jawaban</option>
+          <option value="A">NAMI</option>
+          <option value="B">RITA</option>
+          <option value="C">PRI</option>
+          <option value="D">NANAT</option>
+          <option value="E">LULU</option>
+          <option value="F">UYUY</option>
+          <option value="G">NUR</option>
+          <option value="H">ARDEN</option>
+          <option value="I">FACHRIL</option>
+        </select>
+      </div>
+      <div class="category">
+        <label>Mr / Mrs MOOD SWING:</label>
+        <select name="mood_swing">
+          <option value="">Pilih Jawaban</option>
+          <option value="A">NAMI</option>
+          <option value="B">RITA</option>
+          <option value="C">PRI</option>
+          <option value="D">NANAT</option>
+          <option value="E">LULU</option>
+          <option value="F">UYUY</option>
+          <option value="G">NUR</option>
+          <option value="H">ARDEN</option>
+          <option value="I">FACHRIL</option>
+        </select>
+      </div>
+      <div class="category">
+        <label>JAGONYA GOSIP:</label>
+        <select name="gosip">
+          <option value="">Pilih Jawaban</option>
+          <option value="A">NAMI</option>
+          <option value="B">RITA</option>
+          <option value="C">PRI</option>
+          <option value="D">NANAT</option>
+          <option value="E">LULU</option>
+          <option value="F">UYUY</option>
+          <option value="G">NUR</option>
+          <option value="H">ARDEN</option>
+          <option value="I">FACHRIL</option>
+        </select>
+      </div>
+      <div class="category">
+        <label>MANUSIA SERBA BISA:</label>
+        <select name="serba_bisa">
+          <option value="">Pilih Jawaban</option>
+          <option value="A">NAMI</option>
+          <option value="B">RITA</option>
+          <option value="C">PRI</option>
+          <option value="D">NANAT</option>
+          <option value="E">LULU</option>
+          <option value="F">UYUY</option>
+          <option value="G">NUR</option>
+          <option value="H">ARDEN</option>
+          <option value="I">FACHRIL</option>
+        </select>
+      </div>
+      <div class="category">
+        <label>PANDAI BERHEMAT:</label>
+        <select name="berhemat">
+          <option value="">Pilih Jawaban</option>
+          <option value="A">NAMI</option>
+          <option value="B">RITA</option>
+          <option value="C">PRI</option>
+          <option value="D">NANAT</option>
+          <option value="E">LULU</option>
+          <option value="F">UYUY</option>
+          <option value="G">NUR</option>
+          <option value="H">ARDEN</option>
+          <option value="I">FACHRIL</option>
+        </select>
+      </div>
+      <div class="category">
+        <label>SANG PETUALANG:</label>
+        <select name="petualang">
+          <option value="">Pilih Jawaban</option>
+          <option value="A">NAMI</option>
+          <option value="B">RITA</option>
+          <option value="C">PRI</option>
+          <option value="D">NANAT</option>
+          <option value="E">LULU</option>
+          <option value="F">UYUY</option>
+          <option value="G">NUR</option>
+          <option value="H">ARDEN</option>
+          <option value="I">FACHRIL</option>
+        </select>
+      </div>
+      <div class="category">
+        <label>PENGUASA PANGGUNG KARAOKE:</label>
+        <select name="karaoke">
+          <option value="">Pilih Jawaban</option>
+          <option value="A">NAMI</option>
+          <option value="B">RITA</option>
+          <option value="C">PRI</option>
+          <option value="D">NANAT</option>
+          <option value="E">LULU</option>
+          <option value="F">UYUY</option>
+          <option value="G">NUR</option>
+          <option value="H">ARDEN</option>
+          <option value="I">FACHRIL</option>
+        </select>
+      </div>
+      <!-- Tambahkan kategori lainnya -->
+      <button type="submit">Kirim Polling</button>
+    </form>
+  </div>
+  
+</body>
+</html>
+
+<script>
+    document.querySelector('#pollingForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+  
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+  
+      fetch('https://script.google.com/macros/s/AKfycbxSn76g-latrToN4swOauMYd8dqMcjQCq837t38kRJV0QVfvGVvanU7c8MMUTOjOZ4U/exec', { // Ganti dengan URL Web App Anda
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.text())
+      .then(data => {
+        alert('Polling berhasil dikirim!');
+        console.log(data);
+      })
+      .catch(error => {
+        alert('Terjadi kesalahan!');
+        console.error(error);
+      });
+    });
+  </script>
+  
